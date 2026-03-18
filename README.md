@@ -164,24 +164,13 @@ OCR 结果会：
 
 ---
 
-## 🧪 测试与诊断
-
-项目里已经有基础测试和诊断脚本：
-
-```bash
-python -m unittest discover -s tests -v
-```
+## 🧪 诊断脚本
 
 本地向量召回诊断：
 
 ```bash
 python scripts/query_rag.py "字节 大模型 面经" --k 10 --grouped
 ```
-
-常用文档：
-- `STATUS.md`
-- `ARCHITECTURE_QUICKSTART.md`
-- `NEXT_STEPS.md`
 
 ---
 
@@ -203,12 +192,8 @@ rednote-rag/
 ├── app/                    # 后端逻辑
 ├── frontend/               # Next 前端工作台
 ├── data/                   # SQLite / Chroma 数据
-├── provider/               # 第三方接入（含 xiaohongshu-cli / bilibili-rag）
+├── provider/               # 第三方接入（含 xiaohongshu-cli）
 ├── scripts/                # 诊断与脚本
-├── tests/                  # 测试
-├── TODO.md
-├── STATUS.md
-├── NEXT_STEPS.md
 └── README.md
 ```
 
@@ -247,38 +232,6 @@ rednote-rag/
 - `POST /chat/search`
 - `POST /chat/ask`
 - `POST /chat/stream`
-
----
-
-## ✅ 当前已完成
-
-目前已经完成：
-
-- `Phase 0`：项目基础骨架
-- `Phase 1`：登录与 session 持久化
-- `Phase 2`：`likes` / `favorites` 接入
-- `Phase 3`：单条 note 详情抓取与缓存
-- `Phase 4`：规范化文本抽取
-- `Phase 5`：向量索引与语义检索
-- `Phase 6`：RAG 问答
-- `Phase 7`：增量同步、来源快照、失败重试
-- `Phase 8`：图片 OCR
-- `Phase 9`：基础测试、统一错误处理、任务化索引与流式问答
-
----
-
-## 📌 后续优化方向
-
-当前主链路已经可用，后续更偏优化项：
-
-- 检索重排与字段加权
-- 更丰富的前端交互
-- 评论区作为次级来源
-- 更完整的回归测试
-- 任务历史与更多可视化状态
-
-详见：
-- `NEXT_STEPS.md`
 
 ---
 

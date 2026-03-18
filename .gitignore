@@ -22,6 +22,7 @@ TODO.md
 STATUS.md
 NEXT_STEPS.md
 ARCHITECTURE_QUICKSTART.md
+tests/
 
 # Reference repo, not part of rednote-rag release
 provider/bilibili-rag/
