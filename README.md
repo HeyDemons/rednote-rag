@@ -1,62 +1,92 @@
-# rednote-rag
+# 🧠 rednote-rag
 
-> 让小红书收藏，不再吃灰
+[English README](./README_EN.md)
 
-把小红书的点赞 / 收藏内容，沉淀成一个可检索、可问答、可追溯来源的个人知识库。
+> 让小红书收藏，从“吃灰”变成“可计算的个人知识资产”。
+
+把你点赞 / 收藏过的小红书内容，变成一个**能搜索、能问答、能回到原帖**的个人知识库。
 
 <p align="center">
   <img src="./demo.png" alt="rednote-rag demo" width="100%" />
 </p>
 
-## What It Does
+## ⚙️ 一个更适合长期使用的小红书知识库
 
-- Sync Xiaohongshu `likes` and `favorites`
-- Cache note details locally
-- Extract text from title, body, tags, metadata, and images
-- Build a searchable vector index with source grounding
-- Chat with your saved content and jump back to the original post
+把小红书点赞 / 收藏内容，整理成一个真正能复用的知识系统。
 
-适合这些场景：
+适合：
 
-- 技术帖归档
-- 实习 / 面经整理
-- 保研经验沉淀
-- 公开课复盘
-- 长期知识收藏和回顾
+- 💼 实习 / 面经整理
+- 🧠 技术帖归档
+- 🎓 保研经验沉淀
+- 📚 公开课复盘
+- 🗂️ 长期知识收藏和回顾
 
-## Highlights
+---
 
-- 小红书登录：支持浏览器 Cookie 导入和二维码登录
-- 内容抽取：正文、标签、作者、元信息统一规范化
-- 图片 OCR：图文帖中的图片文字也能进入索引
-- RAG 检索：支持语义搜索、问答、来源回溯
-- 流式回答：前端支持边生成边显示
-- 增量同步：支持全量同步、增量同步、失败重试
-- 本地优先：SQLite + ChromaDB，本地可控
+## ✨ 产品亮点
 
-## Demo
+### 📦 像管理知识，而不是管理收藏
 
-项目工作流：
+不是简单导出帖子列表，而是把内容整理成可检索、可问答、可复用的知识库。
 
-1. 登录小红书
-2. 同步 `likes` / `favorites`
-3. 抓取 note 详情并写入本地缓存
-4. 抽取正文与 OCR 文本
-5. 构建向量索引
-6. 检索、问答、回溯来源
+### 🖼️ 不只吃正文，也吃图片里的信息
 
-## Tech Stack
+很多高质量内容都写在图里。`rednote-rag` 支持 OCR，把图片中的文字一起纳入检索和问答。
 
-- Backend: FastAPI
-- Frontend: Next.js
-- Database: SQLite
-- Vector Store: ChromaDB
-- LLM / Embedding / OCR: OpenAI-compatible API
-- Xiaohongshu integration: `xiaohongshu-cli`
+### 🔗 每条回答都带来源
 
-## Quick Start
+不是黑盒输出。回答会附带来源帖子，方便核对、回看和继续深挖。
 
-### 1. Clone
+### ♻️ 适合长期积累
+
+支持全量同步、增量同步和失败重试，适合长期积累和日常更新。
+
+---
+
+## 🔥 核心能力
+
+- 🔐 小红书登录
+  支持浏览器 Cookie 导入和二维码登录
+
+- 📥 内容同步
+  支持同步 `likes` / `favorites`
+
+- 📝 内容抽取
+  自动整理标题、正文、标签、作者、元信息
+
+- 🖼️ 图片 OCR
+  图文帖中的图片文字也能被索引
+
+- 🔎 语义搜索
+  不依赖死板关键词，支持基于语义召回相关帖子
+
+- 💬 RAG 问答
+  直接围绕你的收藏内容提问
+
+- 🧷 来源回溯
+  查看命中内容，并跳转回原帖
+
+- ⚡ 流式回答
+  支持边生成边显示，更接近真实聊天体验
+
+---
+
+## 🚀 使用流程
+
+1. 登录你的小红书账号
+2. 同步 `likes / favorites`
+3. 系统抓取 note 详情并本地缓存
+4. 抽取正文、标签、作者、元信息
+5. 对图片执行 OCR
+6. 构建向量索引
+7. 开始搜索、提问、回看来源
+
+---
+
+## ⚡ 快速开始
+
+### 1. 📦 拉取项目
 
 ```bash
 git clone --recurse-submodules <your-repo-url>
@@ -69,14 +99,14 @@ cd rednote-rag
 git submodule update --init --recursive
 ```
 
-### 2. Install
+### 2. 🔧 安装依赖
 
 ```bash
 pip install -r requirements.txt
 pip install -e provider/xiaohongshu-cli
 ```
 
-前端依赖：
+安装前端依赖：
 
 ```bash
 cd frontend
@@ -84,13 +114,13 @@ npm install
 cd ..
 ```
 
-### 3. Configure
+### 3. 🛠️ 配置环境变量
 
 ```bash
 cp .env.example .env
 ```
 
-按需配置：
+按需配置以下环境变量：
 
 - `OPENAI_API_KEY`
 - `OPENAI_BASE_URL`
@@ -99,15 +129,15 @@ cp .env.example .env
 - `OCR_ENABLED`
 - `OCR_MODEL`
 
-## Run
+### 4. ▶️ 启动服务
 
-启动后端：
+后端：
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-启动前端：
+前端：
 
 ```bash
 cd frontend
@@ -119,27 +149,29 @@ npm run dev -- --hostname 127.0.0.1 --port 3001
 - Frontend: `http://127.0.0.1:3001`
 - API Docs: `http://127.0.0.1:8000/docs`
 
-## Core Features
+---
 
-### 1. Authentication
+## 🗂️ 模块概览
+
+### 🔐 登录
 
 - `POST /auth/login/browser`
 - `POST /auth/login/qrcode`
 - `GET /auth/login/qrcode/status/{login_id}`
 
-### 2. Collections
+### 📚 收藏 / 点赞
 
 - `GET /collections/list`
 - `GET /collections/{source_type}/items`
 
-### 3. Notes
+### 📝 内容缓存
 
 - `POST /notes/{note_id}/cache`
 - `GET /notes/{note_id}`
 - `GET /notes/{note_id}/content`
 - `GET /notes/{note_id}/ocr`
 
-### 4. Knowledge Base
+### 🧠 知识库
 
 - `GET /knowledge/status`
 - `POST /knowledge/sync`
@@ -147,25 +179,36 @@ npm run dev -- --hostname 127.0.0.1 --port 3001
 - `POST /knowledge/search`
 - `POST /knowledge/index`
 
-### 5. Chat
+### 💬 问答
 
 - `POST /chat/search`
 - `POST /chat/ask`
 - `POST /chat/stream`
 
-## OCR and Video Notes
+---
 
-- 图文帖支持 OCR，OCR 文本会进入检索和问答
-- 视频帖目前只保留现有文字字段
-- 当前不处理视频本身，不做音频转文字
+## 🔎 关于 OCR 和视频
 
-## Sync Strategy
+- 图文帖支持 OCR，识别到的文字会参与检索和问答
+- 视频帖目前只保留已有文字字段
+- 当前不处理视频本身，也不做音频转文字
 
-- 全量同步：优先同步正文和索引，默认跳过 OCR，加快首次导入
-- 增量同步：正常执行 OCR
-- 单条缓存：正常执行 OCR
+---
 
-## Project Structure
+## 🔄 同步策略
+
+- **全量同步**
+  默认跳过 OCR，优先把正文和索引快速同步进库
+
+- **增量同步**
+  正常执行 OCR，更适合日常更新
+
+- **单条缓存**
+  正常执行 OCR，适合对重点帖子做精细处理
+
+---
+
+## 📁 项目结构
 
 ```text
 rednote-rag/
@@ -175,13 +218,29 @@ rednote-rag/
 ├── scripts/
 ├── data/
 ├── demo.png
-└── README.md
+├── README.md
+└── README_EN.md
 ```
 
-## Disclaimer
+---
 
-本项目仅供个人学习与技术研究使用。使用者需自行遵守相关平台协议、版权要求与法律法规。
+## 🧩 技术栈
 
-## License
+- **Backend**: FastAPI
+- **Frontend**: Next.js
+- **Database**: SQLite
+- **Vector Store**: ChromaDB
+- **LLM / Embedding / OCR**: OpenAI-compatible API
+- **Content Provider**: `xiaohongshu-cli`
+
+---
+
+## ⚠️ Disclaimer
+
+本项目仅供个人学习与技术研究使用。请自行遵守相关平台协议、版权要求与法律法规。
+
+---
+
+## 📜 License
 
 MIT
