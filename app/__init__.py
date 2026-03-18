@@ -1,0 +1,3 @@
+"""
+rednote-rag application package.
+"""

@@ -1,0 +1,3 @@
+[submodule "provider/xiaohongshu-cli"]
+	path = provider/xiaohongshu-cli
+	url = https://github.com/jackwener/xiaohongshu-cli.git
